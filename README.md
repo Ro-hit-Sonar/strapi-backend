@@ -1,61 +1,66 @@
-# 🚀 Getting started with Strapi
+# Strapi Backend
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+A headless CMS backend built with **Strapi 5** that powers a blog with authors, categories, articles and site-wide settings. It is designed to pair with the [Next.js frontend](https://github.com/Ro-hit-Sonar/strapi-frontend).
 
-### `develop`
+![Strapi](https://img.shields.io/badge/Strapi_5-4945FF?style=flat&logo=strapi&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+## Content model
 
+| Content type | Fields |
+|---|---|
+| **Article** | title, description, slug, cover, author, category, content blocks |
+| **Author** | name, avatar, email, articles |
+| **Category** | name, slug, description, articles |
+| **Global** | site name, favicon, site description, default SEO |
+| **About** | title, content blocks |
+
+Reusable components cover rich text, media, quotes, sliders and SEO.
+
+## Getting started
+
+Requires Node.js 18 to 22.
+
+```bash
+git clone https://github.com/Ro-hit-Sonar/strapi-backend.git
+cd strapi-backend
+npm install
+cp .env.example .env
 ```
+
+Fill in the secrets in `.env` (`APP_KEYS`, `API_TOKEN_SALT`, `ADMIN_JWT_SECRET`, `TRANSFER_TOKEN_SALT`, `JWT_SECRET`, `ENCRYPTION_KEY`) with long random values, then:
+
+```bash
 npm run develop
-# or
-yarn develop
 ```
 
-### `start`
+The admin panel is at [http://localhost:1337/admin](http://localhost:1337/admin). On first run you will be asked to create an admin user.
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+To load example content:
 
-```
-npm run start
-# or
-yarn start
+```bash
+npm run seed:example
 ```
 
-### `build`
+## Database
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+SQLite is used by default for local development. For production, set `DATABASE_CLIENT=postgres` and provide your PostgreSQL connection settings in the environment (see `config/database.ts`).
 
-```
-npm run build
-# or
-yarn build
-```
+## Scripts
 
-## ⚙️ Deployment
+| Command | What it does |
+|---|---|
+| `npm run develop` | Start Strapi with auto-reload |
+| `npm run start` | Start Strapi without auto-reload |
+| `npm run build` | Build the admin panel |
+| `npm run seed:example` | Seed example data |
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+## Learn more
 
-```
-yarn strapi deploy
-```
+- [Strapi documentation](https://docs.strapi.io)
 
-## 📚 Learn more
+## Author
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Built by [Rohit Sonar](https://github.com/Ro-hit-Sonar).
